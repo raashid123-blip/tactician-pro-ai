@@ -4,7 +4,7 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 
 # Load secret API key
-API_KEY = os.getenv("GEMINI_API_KEY")
+API_KEY = st.secrets["API_KEY"]
 
 # Layout configuration
 st.set_page_config(page_title="Tactician Pro AI", page_icon="⚽", layout="centered")
