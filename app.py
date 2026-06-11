@@ -32,12 +32,12 @@ if st.button("Run Tactical Analysis", type="primary"):
     if user_query.strip():
         with st.spinner("Analyzing market volatility..."):
             try:
-                client = genai.Client(api_key=API_KEY)
-                response = client.models.generate_content(
-                    model="models/gemini-2.5-flash",
-                    contents=user_query,
-                    config={"system_instruction": SYSTEM_INSTRUCTION}
+                genai.configure(api_key=API_KEY)
+                model = genai.GenerativeModel(
+                    model_name="gemini-1.5-flash",
+                    system_instruction=SYSTEM_INSTRUCTION
                 )
+                response = model.generate_content(user_query)
                 st.write("---")
                 st.success("Analysis Complete!")
                 st.markdown(response.text)
